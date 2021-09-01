@@ -156,7 +156,7 @@ func orderPoints(pointsMap map[string]int) (string, []string) {
 			team := teamsGroupedByPoints[0]
 
 			ptsPluralForm := " pt"
-			if point > 1 {
+			if point > 1 || point == 0 {
 				ptsPluralForm = " pts"
 			}
 
@@ -168,7 +168,11 @@ func orderPoints(pointsMap map[string]int) (string, []string) {
 			sort.Strings(teamsGroupedByPoints)
 
 			for _, team := range teamsGroupedByPoints {
-				rankingResultsArr = append(rankingResultsArr, team+", "+fmt.Sprint(point)+" pts")
+				ptsPluralForm := " pt"
+				if point > 1 || point == 0 {
+					ptsPluralForm = " pts"
+				}
+				rankingResultsArr = append(rankingResultsArr, team+", "+fmt.Sprint(point)+ptsPluralForm)
 			}
 		}
 	}
